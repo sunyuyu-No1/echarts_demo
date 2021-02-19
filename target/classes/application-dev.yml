@@ -1,0 +1,40 @@
+# web * 3   N * service
+server:
+  port: 8100
+
+spring:
+  datasource:
+    username: root
+    password: 1234
+    url: jdbc:mysql://192.168.113.1:3306/
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: \u3010stat,wall,log4j\u3011
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  thymeleaf:
+    cache: false
+
+#    下面这种方式是自己配置默认使用的文件夹代替static,一般不用
+#  resources:
+#    static-locations: classpath:/static/
+mybatis:
+  #  本地若有config-location就要写
+#  config-location: classpath:config/mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+
+
+
